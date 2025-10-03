@@ -157,3 +157,5 @@ TEST_CASE("PrintLedger3", "[ts-10]") {
   REQUIRE_THROWS_AS(atm.PrintLedger("output.txt", 12345677, 1234),
                     std::invalid_argument);
 }
+
+TEST_CASE("TEST", "[TEST]") { REQUIRE(true); }
