@@ -136,3 +136,24 @@ TEST_CASE("DepositCash4", "[ts-7]") {
   REQUIRE_THROWS_AS(atm.DepositCash(12345678, 1234, -100.00),
                     std::invalid_argument);
 }
+
+TEST_CASE("PrintLedger", "[ts-8]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  atm.PrintLedger("output.txt", 12345678, 1234);
+  REQUIRE(CompareFiles("output.txt", "expected.txt"));
+}
+
+TEST_CASE("PrintLedger", "[ts-9]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  REQUIRE_THROWS_AS(atm.PrintLedger("output.txt", 12345678, 1233),
+                    std::invalid_argument);
+}
+
+TEST_CASE("PrintLedger", "[ts-10]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  REQUIRE_THROWS_AS(atm.PrintLedger("output.txt", 12345677, 1234),
+                    std::invalid_argument);
+}
