@@ -77,14 +77,14 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
 
 TEST_CASE("Some wrong parameters", "[ts-1]") {
   Atm atm;
-  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", -300.00);
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.00);
   auto accounts = atm.GetAccounts();
   REQUIRE(accounts.contains({12345678, 1234}));
   REQUIRE(accounts.size() == 1);
 
   Account sam_account = accounts[{12345678, 1234}];
   REQUIRE(sam_account.owner_name == "Sam Sepiol");
-  REQUIRE(sam_account.balance == -300.00);
+  REQUIRE(sam_account.balance == 300.00);
 
   auto transactions = atm.GetTransactions();
   REQUIRE(accounts.contains({12345678, 1234}));
